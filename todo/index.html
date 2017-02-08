@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>ToDo Project</title>
+    
+</head>
+<body style="margin: 0 auto; width: 608px;border-style: solid; border-width: 1px;">
+<div style=" border-style: solid; border-width: 1px;">
+    <div style="width: 137px; height: 137px; display: inline-block; float: left; border-style: solid; border-width: 1px;">
+        <img src="https://b.fastcompany.net/multisite_files/fastcompany/imagecache/inline-small/inline/2015/09/3050613-inline-i-2-googles-new-logo-copy.png" height="137" width="137">
+    </div>
+    <div style="display: inline-block; margin: 50px;">
+        <label for="Search">Search</label>
+        <input type="text" value="" id="Search" onchange="setSearchKey(this)" style="padding: 10px; margin-left: 20px;"/>
+    </div>
+</div>
+
+<div>
+    <div style="background-color: #4688f1; padding: 20px;">
+        <input type="radio" name="Selected" value="All" checked onclick="show(value)"> All
+        <input type="radio" name="Selected" value="Done" onclick="show(value)"> Done
+        <input type="radio" name="Selected" value="Pending" onclick="show(value)"> Pending
+        <button style="padding: 13px; float: right;margin: -13px; border-radius: 10px;"  onclick="addTask()">Add</button>
+    </div>
+    <div id="addTask" style="display: none; padding: 10px;margin: 15px; border-style: solid; border-width: 1px;">
+        <label for="title">Title :</label><input type="text" id="title"value="" style="margin: 13px;margin-left: 53px;padding: 7px;" /><br/>
+        <label for="discription">Discription :</label><input type="text" id="discription" value="" style="margin: 13px; padding: 7px;"/>
+        <button style="float: right; padding: 12px;border-radius: 10px; margin: 20px; background-color: #4688f1;" onclick="create()">Save</button>
+        <button style="float: right; padding: 12px;border-radius: 10px; margin: 20px ;background-color: #e8443b; " onclick="cancel()">Cancel</button>
+    </div>
+    <div id="showTask"></div>
+</div>
+<div style="border-style: solid; border-width: 1px;">
+    <div style="width: 120px; height: 120px; display: inline-block; float: left; border-style: solid; border-width: 1px;">
+        <img src="https://b.fastcompany.net/multisite_files/fastcompany/imagecache/inline-small/inline/2015/09/3050613-inline-i-2-googles-new-logo-copy.png" height="100" width="100">
+    </div>
+    <div style="display: inline-block; margin: 42px;">
+        Title : Google<br/>
+        Discription : One of the Largest tech giant
+    </div>
+</div>
+<div style="height: 120px;border-style: solid; border-width: 1px;">
+    <div style="width: 200px; height: 120px; display: inline-block; float: left; border-style: solid; border-width: 1px;">
+
+    </div>
+    <div style="width: 200px; height: 120px; display: inline-block; float: left; border-style: solid; border-width: 1px;">
+
+    </div>
+    <div style="width: 200px; height: 120px; display: inline-block; float: left; border-style: solid; border-width: 1px;">
+
+    </div>
+</div>
+<script src="Show.js"></script>
+</body>
+</html>
