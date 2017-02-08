@@ -8,6 +8,7 @@ var searchKey = "";
 var selectedType = "All";
 function setSearchKey(searchObj) {
     searchKey = searchObj.value;
+    show(selectedType, searchKey);
 }
 function getDoc() {
     var showDoc = document.getElementById('showTask');
@@ -32,12 +33,25 @@ function cancel() {
 function addTask() {
     document.getElementById('addTask').style.display = "block";
 }
-function show(Selected) {
+function show(Selected,searchKey) {
     selectedType = Selected;
     var taskList = window.taskList;
     var showDoc = getDoc();
     for (var task in taskList) {
-        makeRow(task, showDoc);
+        if (!searchKey || taskList[task].title.indexOf(searchKey) != -1) {
+            if (Selected === "Done") {
+                if (taskList[task].status)
+                    makeRow(task, showDoc);
+            }
+            else if (Selected === "Pending") {
+                if (!taskList[task].status)
+                    makeRow(task, showDoc);
+            } else {
+                makeRow(task, showDoc);
+            }
+        }
+       
+        
     }
 }
 
@@ -69,14 +83,14 @@ function deleteDoc(index) {
 
 function editStatus(index,object) {
     //object.value = !object.value;
-    if (object.value === true) {
+    if (taskList[index].status === true) {
         taskList[index].status = false;
         object.value = false;
     } else {
         taskList[index].status = true;
         object.value = true;
     }
-        
+    show(selectedType);
 }
 
 function makeRow(task, doc) {
@@ -86,8 +100,10 @@ function makeRow(task, doc) {
     div.id = taskList[task].title + task;
     var row = doc.appendChild(div);
     row.innerHTML = "<h2>" + taskList[task].title + "</h2> <p>" + taskList[task].discription + "</p>" + '<button style="margin: 8px;padding: 10px;border-radius: 10px; background-color: #4688f1;" onclick="editDoc(' + task + ') ">Edit</button><button style="margin: 8px;padding: 10px;border-radius: 10px; background-color: #e8443b;"  onclick="deleteDoc(' + task + ')">Delete</button>';
-    row.innerHTML += '<input type="checkbox" name="Status" value=' + taskList[task].status + ' onclick="editStatus(' + task +',this)">Done<br>';
-
+    if (taskList[task].status)
+        row.innerHTML += '<input type="checkbox" name="Status" value=' + taskList[task].status + ' onclick="editStatus(' + task + ',this)" checked>Done<br>';
+    else 
+        row.innerHTML += '<input type="checkbox" name="Status" value=' + taskList[task].status + ' onclick="editStatus(' + task + ',this)">Done<br>';
     //div.onclick = function () {
     //    console.log(task);
     //}
